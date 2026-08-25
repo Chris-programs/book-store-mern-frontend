@@ -5,8 +5,11 @@ import { useState } from 'react';
 import { useAuth } from '../../custom hook/useAuth';
 import { useCreateOrderMutation } from '../../redux/features/orders/ordersApi';
 import Swal from 'sweetalert2';
+import { clearCart } from '../../redux/features/cart/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const CheckoutPage = () => {
+  const dispatch = useDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalPrice = cartItems
@@ -54,6 +57,7 @@ const CheckoutPage = () => {
         cancelButtonColor: '#d33',
         confirmButtonText: "Yes, It's Okay!",
       });
+      dispatch(clearCart());
       navigate('/orders');
     } catch (error) {
       console.error('Error place an order', error);
