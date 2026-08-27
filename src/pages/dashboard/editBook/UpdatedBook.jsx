@@ -18,7 +18,7 @@ const UpdatedBook = () => {
     isError,
     refetch,
   } = useFetchBookByIdQuery(id);
-  console.log(bookData);
+  // console.log(bookData);
 
   const [updateBook] = useUpdateBookMutation();
 
